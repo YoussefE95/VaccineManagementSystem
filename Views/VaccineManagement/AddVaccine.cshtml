@@ -1,0 +1,36 @@
+@{
+	ViewData["Title"] = "Add Vaccine";
+}
+
+<div class="text-center">
+	<div>
+		<a asp-controller="VaccineManagement" asp-action="DisplayVaccines">Display All Vaccines</a>
+	</div>
+
+	<br>
+
+	<form method="post">
+		<div class="form-group row">
+			<label for="Name" class="col-sm-2 col-form-label">Name&colon; </label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="Name" name="Name">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="DosesRequired" class="col-sm-2 col-form-label">Doses Required&colon; </label>
+			<div class="col-sm-8">
+				<select class="form-control" id="DosesRequired" name="DosesRequired">
+					<option>1</option>
+					<option>2</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="DaysBetween" class="col-sm-2 col-form-label">Days Between Doses&colon; </label>
+			<div class="col-sm-8">
+				<input type="number" class="form-control" id="DaysBetween" name="DaysBetween">
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary">Add</button>
+	</form>
+</div>

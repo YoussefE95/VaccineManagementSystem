@@ -1,0 +1,25 @@
+@model Error
+
+@{
+	ViewData["Title"] = "Input Error";
+}
+
+<div class="text-center">
+	<div>
+		<a asp-controller="VaccineManagement" asp-action="DisplayVaccines">Display All Vaccines</a> | 
+		@if(@Model.PreviousAction == "EditVaccine")
+		{
+			<a asp-controller="VaccineManagement" asp-action="@Model.PreviousAction" asp-route-id="@Model.Id">Try Again</a>
+		}
+		else
+		{
+			<a asp-controller="VaccineManagement" asp-action="@Model.PreviousAction">Try Again</a>
+		}
+	</div>
+
+	<br>
+
+	<div>
+		<h3>@Model.Message</h3>
+	</div>
+</div>

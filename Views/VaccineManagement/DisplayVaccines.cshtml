@@ -1,0 +1,40 @@
+@model List<Vaccine>
+
+@{
+	ViewData["Title"] = "Display Vaccines";
+}
+
+<div class="text-center">
+	<div>
+		<a asp-controller="VaccineManagement" asp-action="AddVaccine">New Vaccine</a> |
+		<a asp-controller="VaccineManagement" asp-action="AddDoses">New Doses</a>
+	</div>
+
+	<br>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Vaccine</th>
+				<th>Doses Required</th>
+				<th>Days Between Doses</th>
+				<th>Total Doses Received</th>
+				<th>Total Doses Left</th>
+				<th> </th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var vaccine in Model)
+			{
+				<tr>
+					<td>@vaccine.Name</td>
+					<td>@vaccine.DosesRequired</td>
+					<td>@vaccine.DaysBetween</td>
+					<td>@vaccine.TotalDoses</td>
+					<td>@vaccine.TotalDoses</td>
+					<td><a asp-controller="VaccineManagement" asp-action="EditVaccine" asp-route-id="@vaccine.Id">Edit</a></td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
