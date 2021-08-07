@@ -23,11 +23,9 @@ namespace VaccineManager.Controllers
 		[HttpPost]
 		public IActionResult AddVaccine(Vaccine newVaccine)
 		{
-			if(newVaccine.Name == null)
-				return RedirectToAction("InputError", new Error("AddVaccine", "The vaccine must have a name"));
-			else if(newVaccine.DosesRequired == 2 && (newVaccine.DaysBetween == null || newVaccine.DaysBetween <= 0))
+			if(newVaccine.DosesRequired == 2 && newVaccine.DaysBetween <= 0)
 				return RedirectToAction("InputError", new Error("AddVaccine", "A vaccine with two required doses must have days between each dose"));
-			else if(newVaccine.DosesRequired == 1 && (newVaccine.DaysBetween != null && newVaccine.DaysBetween != 0))
+			else if(newVaccine.DosesRequired == 1 && newVaccine.DaysBetween != 0)
 				return RedirectToAction("InputError", new Error("AddVaccine", "A vaccine with only one required dose cannot have days between"));
 
 			_vaccineService.AddVaccine(newVaccine);
@@ -35,7 +33,11 @@ namespace VaccineManager.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult AddDoses() => View(_vaccineService.GetVaccines());
+		public IActionResult AddDoses()
+		{
+			ViewBag.Vaccines = _vaccineService.GetVaccines();
+			return View();
+		}
 
 		[HttpPost]
 		public IActionResult AddDoses(int id, long newDoses)
@@ -53,11 +55,9 @@ namespace VaccineManager.Controllers
 		[HttpPost]
 		public IActionResult EditVaccine(Vaccine updatedVaccine)
 		{
-			if(updatedVaccine.Name == null)
-				return RedirectToAction("InputError", new Error(updatedVaccine.Id, "EditVaccine", "The vaccine must have a name"));
-			else if(updatedVaccine.DosesRequired == 2 && (updatedVaccine.DaysBetween == null || updatedVaccine.DaysBetween <= 0))
+			if(updatedVaccine.DosesRequired == 2 && updatedVaccine.DaysBetween <= 0)
 				return RedirectToAction("InputError", new Error(updatedVaccine.Id, "EditVaccine", "A vaccine with two required doses must have days between each dose"));
-			else if(updatedVaccine.DosesRequired == 1 && (updatedVaccine.DaysBetween != null && updatedVaccine.DaysBetween != 0))
+			else if(updatedVaccine.DosesRequired == 1 && updatedVaccine.DaysBetween != 0)
 				return RedirectToAction("InputError", new Error(updatedVaccine.Id, "EditVaccine", "A vaccine with only one required dose cannot have days between"));
 
 			_vaccineService.EditVaccine(updatedVaccine);

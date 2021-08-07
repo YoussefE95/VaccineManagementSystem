@@ -13,15 +13,15 @@
 
 	<form method="post">
 		<div class="form-group row">
-			<label for="Name" class="col-sm-2 col-form-label">Name&colon; </label>
+			<label asp-for="Name" class="col-sm-2 col-form-label">Name&colon; </label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="Name" name="Name" value="@Model.Name">
+				<input asp-for="Name" class="form-control" value="@Model.Name" required>
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="DosesRequired" class="col-sm-2 col-form-label">Doses Required&colon; </label>
+			<label asp-for="DosesRequired" class="col-sm-2 col-form-label">Doses Required&colon; </label>
 			<div class="col-sm-8">
-				<select class="form-control" id="DosesRequired" name="DosesRequired" selected="@Model.Id">
+				<select asp-for="DosesRequired" class="form-control">
 					@for(int i = 1; i <= 2; i++)
 					{
 						@if(i == @Model.DosesRequired)
@@ -37,9 +37,9 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="DaysBetween" class="col-sm-2 col-form-label">Days Between Doses&colon; </label>
+			<label asp-for="DaysBetween" class="col-sm-2 col-form-label">Days Between Doses&colon; </label>
 			<div class="col-sm-8">
-				<input type="number" class="form-control" id="DaysBetween" name="DaysBetween" value="@Model.DaysBetween">
+				<input asp-for="DaysBetween" class="form-control" value="@Model.DaysBetween" required>
 			</div>
 		</div>
 		<button type="submit" class="btn btn-primary">Edit</button>

@@ -31,9 +31,10 @@ namespace VaccineManager
 
 		public void AddVaccine(Vaccine newVaccine)
 		{
-			_db.Vaccines.Add(newVaccine);
 			if(newVaccine.DaysBetween == 0)
 				newVaccine.DaysBetween = null;
+
+			_db.Vaccines.Add(newVaccine);
 
 			_db.SaveChanges();
 		}
@@ -46,7 +47,7 @@ namespace VaccineManager
 
 		public void EditVaccine(Vaccine updatedVaccine)
 		{
-			Vaccine editedVaccine = _db.Vaccines.Where(v => v.Id == updatedVaccine.Id).SingleOrDefault();
+			Vaccine editedVaccine = GetVaccine(updatedVaccine.Id);
 			editedVaccine.Name = updatedVaccine.Name;
 			editedVaccine.DosesRequired = updatedVaccine.DosesRequired;
 			if(updatedVaccine.DaysBetween == 0)
