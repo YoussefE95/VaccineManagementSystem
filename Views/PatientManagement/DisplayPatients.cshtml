@@ -1,0 +1,58 @@
+@{
+	ViewData["Title"] = "Display Patients";
+}
+
+<div class="text-center">
+	<div>
+		<a asp-controller="PatientManagement" asp-action="AddPatient">New Patient</a>
+	</div>
+
+	<br>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Vaccine</th>
+				<th>1st Dose</th>
+				<th>2nd Dose</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var Patient in ViewBag.Patients)
+			{
+				<tr>
+					<td>@Patient.Id</td>
+					<td>@Patient.Name</td>
+					<td>@ViewBag.Vaccines.GetVaccine(Patient.VaccineId).Name</td>
+					<td>@Patient.FirstDose.ToString("d")</td>
+					@if (Patient.SecondDose == null)
+					{
+						if (ViewBag.Vaccines.GetVaccine(Patient.VaccineId).DosesRequired > 1)
+						{
+							if (ViewBag.Vaccines.GetVaccine(Patient.VaccineId).TotalDoses > 0)
+							{
+								<td>
+									<a asp-controller="PatientManagement" asp-action="RecieveDose" asp-route-id="@Patient.Id">Received</a>
+								</td>
+							}
+							else
+							{
+								<td>Out of Stock</td>
+							}
+						}
+						else
+						{
+							<td>&minus;</td>
+						}
+					}
+					else
+					{
+						<td>@Patient.SecondDose.ToString("d")</td>
+					}
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
