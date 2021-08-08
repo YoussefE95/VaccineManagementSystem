@@ -27,6 +27,13 @@ namespace VaccineManager.Controllers
 			return View();
 		}
 
+		public IActionResult RecieveSecondDose(int id)
+		{
+			_patientService.RecieveSecondDose(id);
+			_vaccineService.DoseRecieved(_patientService.GetPatient(id).VaccineId);
+			return RedirectToAction("DisplayPatients");
+		}
+
 		[HttpGet]
 		public IActionResult AddPatient()
 		{
@@ -40,8 +47,6 @@ namespace VaccineManager.Controllers
 			_patientService.AddPatient(new Patient(name, vaccineId, DateTime.Now));
 			return RedirectToAction("DisplayPatients");
 		}
-
-		public IActionResult InputError(Error error) => View(error);
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()

@@ -14,6 +14,8 @@ namespace VaccineManager
 
 		void AddDoses(int id, long newDoses);
 		
+		void DoseRecieved(int id);
+		
 		void EditVaccine(Vaccine updatedVaccine);
 
 		void SaveChanges();
@@ -41,15 +43,23 @@ namespace VaccineManager
 
 		public void AddDoses(int id, long newDoses)
 		{
-			_db.Vaccines.Where(v => v.Id == id).SingleOrDefault().TotalDoses += newDoses;
+			GetVaccine(id).TotalDoses += newDoses;
+			SaveChanges();
+		}
+
+		public void DoseRecieved(int id)
+		{
+			GetVaccine(id).TotalDoses -= 1;
 			SaveChanges();
 		}
 
 		public void EditVaccine(Vaccine updatedVaccine)
 		{
 			Vaccine editedVaccine = GetVaccine(updatedVaccine.Id);
+
 			editedVaccine.Name = updatedVaccine.Name;
 			editedVaccine.DosesRequired = updatedVaccine.DosesRequired;
+			
 			if(updatedVaccine.DaysBetween == 0)
 				editedVaccine.DaysBetween = null;
 			else

@@ -9,9 +9,11 @@ namespace VaccineManager
 	{
 		List<Patient> GetPatients();
 
+		Patient GetPatient(int id);
+
 		void AddPatient(Patient newPatient);
 
-		void RecieveSecondDose(int id, DateTime currentDate);
+		void RecieveSecondDose(int id);
 		
 		void SaveChanges();
 	}
@@ -24,11 +26,18 @@ namespace VaccineManager
 
 		public List<Patient> GetPatients() => _db.Patients.ToList();
 
-		public void AddPatient(Patient newPatient) => _db.Patients.Add(newPatient);
+		public Patient GetPatient(int id) => _db.Patients.Where(p => p.Id == id).SingleOrDefault();
 
-		public void RecieveSecondDose(int id, DateTime currentDate)
+		public void AddPatient(Patient newPatient)
 		{
+			_db.Patients.Add(newPatient);
+			SaveChanges();
+		}
 
+		public void RecieveSecondDose(int id)
+		{
+			GetPatient(id).SecondDose = DateTime.Now;
+			SaveChanges();
 		}
 
 		public void SaveChanges() => _db.SaveChanges();
