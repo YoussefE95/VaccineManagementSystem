@@ -15,7 +15,11 @@ namespace VaccineManager.Controllers
 
 		public VaccineManagementController(IVaccineService vaccineService) => _vaccineService = vaccineService;
 
-		public IActionResult DisplayVaccines() => View(_vaccineService.GetVaccines());
+		public IActionResult DisplayVaccines()
+		{
+			ViewBag.Vaccines = _vaccineService.GetVaccines();
+			return View();
+		}
 
 		[HttpGet]
 		public IActionResult AddVaccine() => View();

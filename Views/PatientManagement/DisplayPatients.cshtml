@@ -31,7 +31,7 @@
 					{
 						if (ViewBag.Vaccines.GetVaccine(Patient.VaccineId).DosesRequired > 1)
 						{
-							if (ViewBag.Vaccines.GetVaccine(Patient.VaccineId).TotalDoses > 0)
+							if (ViewBag.Vaccines.GetVaccine(Patient.VaccineId).TotalDosesLeft > 0)
 							{
 								<td>
 									<a asp-controller="PatientManagement" asp-action="RecieveSecondDose" asp-route-id="@Patient.Id">Received</a>

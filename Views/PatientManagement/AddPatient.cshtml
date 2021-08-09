@@ -20,9 +20,12 @@
 			<label for="VaccineId" class="col-sm-2 col-form-label">Vaccine&colon; </label>
 			<div class="col-sm-8">
 				<select class="form-control" id="VaccineId" name="VaccineId">
-					@foreach(var vaccine in ViewBag.Vaccines)
+					@foreach(var Vaccine in ViewBag.Vaccines)
 					{
-						<option value="@vaccine.Id">@vaccine.Name</option>
+						if(Vaccine.TotalDosesLeft != 0)
+						{
+							<option value="@Vaccine.Id">@Vaccine.Name</option>
+						}
 					}
 				</select>
 			</div>

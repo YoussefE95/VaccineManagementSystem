@@ -30,7 +30,7 @@ namespace VaccineManager.Controllers
 		public IActionResult RecieveSecondDose(int id)
 		{
 			_patientService.RecieveSecondDose(id);
-			_vaccineService.DoseRecieved(_patientService.GetPatient(id).VaccineId);
+			_vaccineService.DoseReceived(_patientService.GetPatient(id).VaccineId);
 			return RedirectToAction("DisplayPatients");
 		}
 
@@ -45,6 +45,7 @@ namespace VaccineManager.Controllers
 		public IActionResult AddPatient(string name, int vaccineId)
 		{
 			_patientService.AddPatient(new Patient(name, vaccineId, DateTime.Now));
+			_vaccineService.DoseReceived(vaccineId);
 			return RedirectToAction("DisplayPatients");
 		}
 

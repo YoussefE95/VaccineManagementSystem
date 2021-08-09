@@ -14,7 +14,7 @@ namespace VaccineManager
 
 		void AddDoses(int id, long newDoses);
 		
-		void DoseRecieved(int id);
+		void DoseReceived(int id);
 		
 		void EditVaccine(Vaccine updatedVaccine);
 
@@ -43,13 +43,15 @@ namespace VaccineManager
 
 		public void AddDoses(int id, long newDoses)
 		{
-			GetVaccine(id).TotalDoses += newDoses;
+			GetVaccine(id).TotalDosesLeft += newDoses;
 			SaveChanges();
 		}
 
-		public void DoseRecieved(int id)
+		public void DoseReceived(int id)
 		{
-			GetVaccine(id).TotalDoses -= 1;
+			Vaccine currentVaccine = GetVaccine(id);
+			currentVaccine.TotalDosesLeft -= 1;
+			currentVaccine.TotalDosesReceived++;
 			SaveChanges();
 		}
 

@@ -6,7 +6,8 @@ create table Vaccines (
 	Name varchar(150),
 	DosesRequired int,
 	DaysBetween int null,
-	TotalDoses bigint
+	TotalDosesLeft bigint,
+	TotalDosesReceived bigint
 );
 
 create table Patients (

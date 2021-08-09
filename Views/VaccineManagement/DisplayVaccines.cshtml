@@ -1,5 +1,3 @@
-@model List<Vaccine>
-
 @{
 	ViewData["Title"] = "Display Vaccines";
 }
@@ -24,15 +22,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach (var vaccine in Model)
+			@foreach (var Vaccine in ViewBag.Vaccines)
 			{
 				<tr>
-					<td>@vaccine.Name</td>
-					<td>@vaccine.DosesRequired</td>
-					<td>@vaccine.DaysBetween</td>
-					<td>@vaccine.TotalDoses</td>
-					<td>@vaccine.TotalDoses</td>
-					<td><a asp-controller="VaccineManagement" asp-action="EditVaccine" asp-route-id="@vaccine.Id">Edit</a></td>
+					<td>@Vaccine.Name</td>
+					<td>@Vaccine.DosesRequired</td>
+					<td>@Vaccine.DaysBetween</td>
+					<td>@Vaccine.TotalDosesReceived</td>
+					<td>@Vaccine.TotalDosesLeft</td>
+					<td><a asp-controller="VaccineManagement" asp-action="EditVaccine" asp-route-id="@Vaccine.Id">Edit</a></td>
 				</tr>
 			}
 		</tbody>
