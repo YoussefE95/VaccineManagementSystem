@@ -1,6 +1,6 @@
 {
 	"ConnectionStrings": {
-		"DefaultConnection": "Server=;Database=;User ID=;Password="
+		"DefaultConnection": "Server=;Port=;Database=;Uid=;Pwd=;"
 	},
 	"Logging": {
 		"LogLevel": {

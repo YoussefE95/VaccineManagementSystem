@@ -6,10 +6,10 @@ insert into Vaccines (Name, DosesRequired, DaysBetween, TotalDosesLeft, TotalDos
 	Values('Moderna', 2, 21, 0, 0);
 
 insert into Patients (Name, VaccineId, FirstDose, SecondDose)
-	Values('John Doe', 1, '2/18/2021', '3/11/2021');
+	Values('John Doe', 1, '2021/2/18', '2021/3/11');
 insert into Patients (Name, VaccineId, FirstDose, SecondDose)
-	Values('Jane Doe', 1, '2/18/2021', null);
+	Values('Jane Doe', 1, '2021/2/18', null);
 insert into Patients (Name, VaccineId, FirstDose, SecondDose)
-	Values('Tom Smith', 2, '3/12/2021', null);
+	Values('Tom Smith', 2, '2021/3/12', null);
 insert into Patients (Name, VaccineId, FirstDose, SecondDose)
-	Values('Jim Lee', 3, '3/12/2021', null);
+	Values('Jim Lee', 3, '2021/3/12', null);

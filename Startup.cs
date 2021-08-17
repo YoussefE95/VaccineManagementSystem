@@ -21,9 +21,11 @@ namespace VaccineManager
 		{
 			services.AddControllersWithViews();
 
+			string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
 			services.AddDbContext<AppDbContext>(options =>
-			   options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+			   options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr))
 			);
+
 			services.AddScoped<IVaccineService, VaccineService>();
 			services.AddScoped<IPatientService, PatientService>();
 		}
